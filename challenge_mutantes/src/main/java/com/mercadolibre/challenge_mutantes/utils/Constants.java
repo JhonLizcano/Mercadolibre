@@ -9,7 +9,24 @@ public class Constants {
 	/*
 	 * Numbers
 	 */
+	public static final int ZERO = 0;
+	public static final int ONE = 1;
+	public static final int TWO = 2;
 	public static final int FOUR = 4;
+	public static final long ZERO_LONG = 0L;
+	public static final long ONE_LONG = 1L;
+	public static final double ZERO_POINT_ONE = 0.1;
+	public static final double ONE_DOUBLE = 1;
+	
+	/*
+	 * Texts
+	 */
+	public static final String STATS = "STATS";
+	
+	/*
+	 * Fields
+	 */
+	public static final String STATS_ID = "statsId";
 	
 	public static final String HTTP_HEADER_CONTENT_TYPE = "Content-Type";
 	public static final String ACCEPT = "Accept";

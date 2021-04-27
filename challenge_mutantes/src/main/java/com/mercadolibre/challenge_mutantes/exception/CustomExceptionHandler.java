@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class CustomExceptionHandler {
 	
+	/*
+	 * Método que captura las excepciones de tipo Exception
+	 */
 	@ExceptionHandler(Exception.class)
 	protected ResponseEntity<Void> handleMethodArgumentNotValid(@NotNull HttpServletRequest httpServletRequest, 
 			@NotNull Exception exception) {
