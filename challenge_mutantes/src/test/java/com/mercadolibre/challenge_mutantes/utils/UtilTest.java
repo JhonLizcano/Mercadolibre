@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.assertj.core.util.Arrays;
 
+import com.mercadolibre.challenge_mutantes.domain.DnaSequenceDB;
 import com.mercadolibre.challenge_mutantes.model.ChallengeRequest;
 import com.mercadolibre.challenge_mutantes.model.DnaSequence;
 import com.mercadolibre.challenge_mutantes.model.StatsResponse;
@@ -24,6 +25,18 @@ public class UtilTest {
 				.count_mutant_dna(Constants.ONE_LONG)
 				.count_human_dna(Constants.ONE_LONG)
 				.ratio(Constants.ONE_DOUBLE)
+				.build();
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static DnaSequenceDB getDnaSequenceDB() {
+		DnaSequence[] dna = new DnaSequence[] {
+				new DnaSequence("ATGC"), new DnaSequence("CAGT"), new DnaSequence("TTAT"), new DnaSequence("AGAA")};
+		List<DnaSequence> listDna = new ArrayList(Arrays.asList(dna));
+		
+		return DnaSequenceDB.builder()
+				.sequence(listDna)
+				.mutant(true)
 				.build();
 	}
 }
