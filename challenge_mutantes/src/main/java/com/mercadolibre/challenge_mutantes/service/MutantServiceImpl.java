@@ -28,6 +28,8 @@ public class MutantServiceImpl implements MutantService {
 	
 	public ResponseEntity<Void> execute(ChallengeRequest challengeRequest) {
 		ResponseEntity<Void> response;
+		if (!validate(challengeRequest.getDna()))
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		boolean mutant = false;
 		int countMatches = validarSecuencia(challengeRequest.getDna());
 		if (countMatches < Constants.TWO)
@@ -119,5 +121,22 @@ public class MutantServiceImpl implements MutantService {
 			listReverse.add(dnaSequenceReverse);
 		}
 		return listReverse;
+	}
+	
+	/*
+	 * Método que valida el tamaño de la Matriz y si es cuadrada
+	 * @parameter dna
+	 * @return resultado
+	 */
+	public boolean validate(List<DnaSequence> dna) {
+		boolean resultado = true;
+		if(dna.size() < Constants.FOUR)
+			return false;
+		for(int i = 0; i < dna.size(); i++) {
+			if (dna.get(i).getSequence().length() != dna.size() 
+					|| dna.get(i).getSequence().length() < Constants.FOUR)
+				return false;
+		}
+		return resultado;
 	}
 }

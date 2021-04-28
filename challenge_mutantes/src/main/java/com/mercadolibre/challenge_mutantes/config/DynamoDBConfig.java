@@ -9,6 +9,8 @@ import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.mercadolibre.challenge_mutantes.model.SecretDynamoModel;
+import com.mercadolibre.challenge_mutantes.utils.SecretDynamoDB;
 
 @Configuration
 public class DynamoDBConfig {
@@ -19,12 +21,14 @@ public class DynamoDBConfig {
 	}
 	
 	private AmazonDynamoDB buildAmazonDynamoDB() {
+		SecretDynamoModel secretDynamo = SecretDynamoDB.getSecret();
+		
 		return AmazonDynamoDBClientBuilder
 				.standard()
 				.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(
 						"dynamodb.us-east-2.amazonaws.com", "us-east-2"))
 				.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(
-						"AKIAWSYYNKTKJ4ARW4FF", "s4pZZvwetgm8ALMa769w5xWWXVTKS723sC9cZ2ee")))
+						secretDynamo.getAccessId(), secretDynamo.getSecretId())))
 				.build();
 	}
 }
